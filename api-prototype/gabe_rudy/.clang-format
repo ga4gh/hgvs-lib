@@ -1,0 +1,44 @@
+## This file will be picked up by the clang-format tool for all files underneath this path
+##
+## Example uses. Edit a file in place (Note, you may want to commit first, so you can revert if you don't like these changes)
+##
+## > clang-format -i hgvs.h
+##
+## Format a whole bunch of files!
+## > clang-format -i */*.{h,c}
+##
+## Create a diff of a file on the fly!
+## diff <(clang-format hgvs.h) hgvs.h
+
+BasedOnStyle: Google
+
+# Sometimes need to toggle this on to force left-aligned pointer alignment
+#DerivePointerAlignment: false
+
+# Default is 80, a little too crazy
+ColumnLimit: 100
+
+# Only merge functions defined inside a class header
+AllowShortFunctionsOnASingleLine: Inline
+
+# Unfortunatly clang-format forces if statements onto single line if it
+# fits in the line width.
+#
+# Having a separate line allows for control flow to immediately
+# perceptible, so its a valid preference.
+#
+# If we have to force it one way or another, I'd rather force separate
+# lines and override manually.
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+
+# Always attach braces to surrounding context,
+# but break before braces on function, namespace and class definitions.
+BreakBeforeBraces: Linux
+
+# "allow params to be one line per param when user sets them that way, otherwise auto-detect"
+# I find this does more what I would expect. Sometimes I like
+# one-line-per param and this setting doesn't force a re-flow when I set
+# the code up like that
+ExperimentalAutoDetectBinPacking: true
+
